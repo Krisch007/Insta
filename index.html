@@ -1,265 +1,258 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Instagram - Profil ansehen?</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #fafafa;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            touch-action: manipulation;
-        }
-        
-        .instagram-container {
-            background: white;
-            max-width: 350px;
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .instagram-header {
-            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-            padding: 15px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .instagram-logo {
-            color: white;
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        
-        .profile-section {
-            padding: 25px 15px;
-            text-align: center;
-            background: white;
-        }
-        
-        .profile-avatar {
-            width: clamp(70px, 20vw, 90px);
-            height: clamp(70px, 20vw, 90px);
-            border-radius: 50%;
-            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-          
-            background-image: url( src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAMAAzAMBIgACEQEDEQH/..."); 
-            background-size: cover; 
-            background-position: center; 
-            font-size: clamp(28px, 8vw, 36px);
-            color: white;
-            position: relative;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-        }
-        
-        .profile-avatar::before {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-            z-index: -1;
-        }
-        
-        .profile-username {
-            font-size: clamp(16px, 5vw, 20px);
-            font-weight: 600;
-            color: #262626;
-            margin-bottom: 6px;
-        }
-        
-        .profile-name {
-            font-size: clamp(13px, 4vw, 16px);
-            color: #8e8e8e;
-            margin-bottom: 15px;
-        }
-        
-        .profile-stats {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-            padding: 0 15px;
-        }
-        
-        .stat {
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: clamp(14px, 4vw, 18px);
-            font-weight: 600;
-            color: #262626;
-            display: block;
-        }
-        
-        .stat-label {
-            font-size: clamp(10px, 3vw, 13px);
-            color: #8e8e8e;
-        }
-        
-        .bio-section {
-            padding: 0 15px 20px;
-            text-align: center;
-        }
-        
-        .bio-text {
-            font-size: clamp(12px, 3.5vw, 14px);
-            color: #262626;
-            line-height: 1.4;
-            margin-bottom: 12px;
-        }
-        
-        .action-section {
-            padding: 0 15px 25px;
-            text-align: center;
-        }
-        
-        .view-profile-button {
-            background: linear-gradient(45deg, #405DE6, #5851DB);
-            color: white;
-            border: none;
-            padding: clamp(10px, 3vw, 14px) clamp(20px, 6vw, 30px);
-            font-size: clamp(14px, 4vw, 16px);
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(64, 93, 230, 0.3);
-            width: 100%;
-            max-width: 280px;
-            margin-bottom: 12px;
-        }
-        
-        .view-profile-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(64, 93, 230, 0.4);
-        }
-        
-        .footer-section {
-            background: #fafafa;
-            padding: 15px;
-            text-align: center;
-            border-top: 1px solid #dbdbdb;
-        }
-        
-        .footer-text {
-            font-size: clamp(10px, 3vw, 12px);
-            color: #8e8e8e;
-        }
-        
-        .instagram-icon {
-            color: #8e8e8e;
-            font-size: clamp(10px, 3vw, 12px);
-            margin-right: 5px;
-        }
-        
-        @media (max-width: 480px) {
-            .instagram-container {
-                margin: 5px;
-                border-radius: 8px;
-            }
-            
-            .instagram-header {
-                padding: 12px;
-            }
-            
-            .profile-section {
-                padding: 20px 12px;
-            }
-            
-            .bio-section {
-                padding: 0 12px 15px;
-            }
-            
-            .action-section {
-                padding: 0 12px 20px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Instagram – Profil ansehen?</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #fafafa;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.instagram-container {
+    background: #fff;
+    width: 100%;
+    max-width: 350px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Header */
+.instagram-header {
+    background: linear-gradient(45deg,#405DE6,#5851DB,#833AB4,#C13584,#E1306C,#FD1D1D);
+    padding: 15px;
+    text-align: center;
+}
+
+.instagram-logo {
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+/* Profile */
+.profile-section {
+    padding: 25px 15px;
+    text-align: center;
+}
+
+.profile-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 15px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Username + verified */
+.profile-username {
+    font-size: 18px;
+    font-weight: 600;
+    color: #262626;
+}
+
+.verified-badge {
+    display: inline-flex;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+.verified-badge svg {
+    width: 16px;
+    height: 16px;
+}
+
+.profile-name {
+    color: #8e8e8e;
+    margin-top: 4px;
+    margin-bottom: 15px;
+}
+
+/* Stats */
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.stat-number {
+    font-weight: 600;
+    color: #262626;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #8e8e8e;
+}
+
+/* Bio */
+.bio-text {
+    font-size: 14px;
+    color: #262626;
+    line-height: 1.4;
+}
+
+/* Button */
+.action-section {
+    padding: 20px 15px;
+    text-align: center;
+}
+
+.view-profile-button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(45deg,#405DE6,#5851DB);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(64,93,230,0.3);
+}
+
+.view-profile-button:hover {
+    transform: translateY(-2px);
+}
+
+/* Footer */
+.footer-section {
+    background: #fafafa;
+    border-top: 1px solid #dbdbdb;
+    padding: 12px;
+    text-align: center;
+    font-size: 12px;
+    color: #8e8e8e;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.95);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #dbdbdb;
+    border-top: 3px solid #0095f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 12px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+</style>
 </head>
+
 <body>
-    <div class="instagram-container">
-        <!-- Instagram Header -->
-        <div class="instagram-header">
-            <div class="instagram-logo">Instagram</div>
-        </div>
-        
-        <!-- Profile Section -->
-       <div class="profile-section">
-    <div class="profile-avatar">
-        <img
-            src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAMAAzAMBIgACEQEDEQH/..."
-            alt="Profilbild"
-            style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+
+<div class="instagram-container">
+
+    <!-- Loading -->
+    <div class="loading-overlay" id="loading">
+        <div class="spinner"></div>
+        Profil wird geladen …
     </div>
-            <div class="profile-username">jens.moosbrugger</div>
-            <div class="profile-name">Jens Moosbrugger</div>
-            
-            <!-- Profile Stats -->
-            <div class="profile-stats">
-                <div class="stat">
-                    <span class="stat-number">127</span>
-                    <span class="stat-label">Posts</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">2.8k</span>
-                    <span class="stat-label">Followers</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">892</span>
-                    <span class="stat-label">Following</span>
-                </div>
-            </div>
-            
-            <!-- Bio Section -->
-            <div class="bio-section">
-                <div class="bio-text">
-                    🤖 AI Specialist | Machine Learning Engineer<br>
-                    💻 Transforming data into intelligent solutions<br>
-                    🧠 Deep Learning & Neural Networks<br>
-                    📍 Stuttgart, Germany
-                </div>
-            </div>
-        </div>
-        
-        <!-- Action Section -->
-        <div class="action-section">
-            <button class="view-profile-button" onclick="window.location.href='https://krisch007.github.io/birthday-surprise/'">
-                Profil ansehen
-            </button>
-        </div>
-        
-        <!-- Footer -->
-        <div class="footer-section">
-            <div class="footer-text">
-                <span class="instagram-icon">📱</span>
-                Instagram • Von der Instagram-App geteilt
-            </div>
-        </div>
+
+    <!-- Header -->
+    <div class="instagram-header">
+        <div class="instagram-logo">Instagram</div>
     </div>
+
+    <!-- Profile -->
+    <div class="profile-section">
+
+        <div class="profile-avatar">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAMAAzAMBIgACEQEDEQH/..." alt="Profilbild">
+        </div>
+
+        <div class="profile-username">
+            jens.moosbrugger
+            <span class="verified-badge">
+                <svg viewBox="0 0 24 24" fill="#0095f6">
+                    <path d="M12 2L14.09 6.26L18.82 6.91L15.41 10.18L16.18 14.9L12 12.77L7.82 14.9L8.59 10.18L5.18 6.91L9.91 6.26L12 2Z"/>
+                </svg>
+            </span>
+        </div>
+
+        <div class="profile-name">Jens Moosbrugger</div>
+
+        <div class="profile-stats">
+            <div>
+                <div class="stat-number">127</div>
+                <div class="stat-label">Posts</div>
+            </div>
+            <div>
+                <div class="stat-number">2.8k</div>
+                <div class="stat-label">Followers</div>
+            </div>
+            <div>
+                <div class="stat-number">892</div>
+                <div class="stat-label">Following</div>
+            </div>
+        </div>
+
+        <div class="bio-text">
+            🤖 AI Specialist | Machine Learning Engineer<br>
+            💻 Transforming data into intelligent solutions<br>
+            🧠 Deep Learning & Neural Networks<br>
+            📍 Stuttgart, Germany
+        </div>
+
+    </div>
+
+    <!-- Action -->
+    <div class="action-section">
+        <button class="view-profile-button" onclick="openProfile()">Profil ansehen</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-section">
+        📱 Instagram • Von der Instagram-App geteilt
+    </div>
+
+</div>
+
+<script>
+function openProfile() {
+    document.getElementById('loading').style.display = 'flex';
+    setTimeout(() => {
+        window.location.href = 'https://krisch007.github.io/birthday-surprise/';
+    }, 1800);
+}
+</script>
+
 </body>
 </html>
